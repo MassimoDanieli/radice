@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-14
+          - os: macos-15
             platform: macOS-universal
           - os: windows-2022
             platform: Windows-x64
@@ -28,7 +28,7 @@ jobs:
       # Signing runs only when all Apple secrets exist (never on forks / pull requests from forks).
       MAC_SIGNING: ${{ secrets.MACOS_CERTIFICATE_P12 != '' && secrets.MACOS_CERTIFICATE_PASSWORD != '' && secrets.APPLE_ID != '' && secrets.APPLE_TEAM_ID != '' && secrets.APPLE_APP_PASSWORD != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Linux dependencies
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y libasound2-dev libx11-dev libxext-dev libxinerama-dev libxrandr-dev libxcursor-dev libfreetype6-dev libfontconfig1-dev libgl1-mesa-dev xvfb
@@ -76,7 +76,7 @@ jobs:
         run: xvfb-run -a build/LowlineTests_artefacts/Release/LowlineTests --screenshot
       - name: Upload interface preview
         if: runner.os == 'Linux'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Radice-interface-preview
           if-no-files-found: error
@@ -152,7 +152,7 @@ jobs:
           cp packaging/README-INSTALL.txt build/Lowline_artefacts/Release/
           tar -C build/Lowline_artefacts/Release -czf Radice-Linux-x64.tar.gz Standalone VST3 README-INSTALL.txt
       - name: Upload downloadable build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Radice-${{ matrix.platform }}
           if-no-files-found: error
@@ -164,7 +164,7 @@ jobs:
             Radice-Linux-x64.tar.gz
       - name: Upload test logs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-logs-${{ matrix.platform }}
           if-no-files-found: ignore
@@ -178,7 +178,7 @@ jobs:
     timeout-minutes: 60
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Configure Xcode project for iOS
         run: cmake -S . -B build-ios -G Xcode -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_DEPLOYMENT_TARGET=15.0 -DLOWLINE_BUILD_NUMBER=${{ github.run_number }}
       - name: Build app and AUv3 for devices (unsigned)
@@ -218,10 +218,10 @@ jobs:
     env:
       MAC_SIGNING: ${{ secrets.MACOS_CERTIFICATE_P12 != '' && secrets.MACOS_CERTIFICATE_PASSWORD != '' && secrets.APPLE_ID != '' && secrets.APPLE_TEAM_ID != '' && secrets.APPLE_APP_PASSWORD != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: source
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: Radice-*
           merge-multiple: true
