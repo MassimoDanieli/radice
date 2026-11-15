@@ -1,3 +1,12 @@
+# 0.5.2
+
+**All platforms**
+- JUCE 8.0.17-security. It fixes a crash when reading WAV or AIFF files with a malformed channel count and hardens WAV/AIFF metadata, ZIP, XML, JSON, PNG and GIF parsing. Radice opens IRs, backing tracks and presets chosen by the user, so this matters even without other changes.
+
+**Build and release**
+- GitHub Actions moved to their Node 24 versions (the Node 20 ones are deprecated on GitHub's runners).
+- Removed the one-off `release-0.2.yml` workflow: it republished the 0.2 packages from a single 2026 run and can no longer work once those artifacts expire.
+
 # 0.5.1
 
 **iPad and iPhone**

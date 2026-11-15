@@ -1,4 +1,4 @@
-# Radice 0.5.1 — Bass NAM + IR rig
+# Radice 0.5.2 — Bass NAM + IR rig
 
 A free, open-source native bass rig for macOS (Apple Silicon + Intel), Windows x64 and Linux x64, plus an iPad/iPhone app and AUv3. Standalone and VST3; AU is also built for macOS. Original project for Massimo Danieli, not affiliated with NamRay, Neural Amp Modeler or TONE3000.
 
@@ -16,6 +16,7 @@ App pronta all'uso: non serve compilare. / Ready-built app: no compilation neede
 
 ## New in 0.5
 
+- **0.5.2 — safer file loading:** JUCE 8.0.17 hardens WAV/AIFF reading (a malformed channel count could crash), ZIP, JSON and XML parsing. Worth having because Radice opens IRs, backing tracks and presets you pick from disk.
 - **0.5.1 — iPad and iPhone:** Radice launches on iPadOS/iOS 27 (it closed at once before), the AUDIO settings open inside the interface and close with OK, and the app is ready for TestFlight. Desktop builds move to JUCE 8.0.16 as well.
 
 - **New name:** Lowline is now Radice — the root note, the one the bass plays.
@@ -114,7 +115,7 @@ Older presets load with neutral defaults for the new effects. Keep backups when 
 
 ## Build
 
-CMake 3.24+, C++20 compiler. Dependencies are pinned: JUCE 8.0.6 and NAM core `0b3d3c97b0859a3a8c92a8628c4dd89a25eb5842` (A2 support). Repository builds fetch them; a local `third_party` checkout can be used offline.
+CMake 3.24+, C++20 compiler. Dependencies are pinned: JUCE 8.0.17-security and NAM core `0b3d3c97b0859a3a8c92a8628c4dd89a25eb5842` (A2 support). Repository builds fetch them; a local `third_party` checkout can be used offline.
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release

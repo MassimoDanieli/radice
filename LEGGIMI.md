@@ -1,4 +1,6 @@
-# Radice 0.5.1
+# Radice 0.5.2
+
+*Novità della 0.5.2: JUCE 8.0.17 rende più sicura l'apertura dei file. Un WAV o AIFF con un numero di canali malformato poteva far chiudere l'app; anche ZIP, JSON e XML sono letti con più controlli. Conta perché Radice apre IR, basi e preset scelti dal disco.*
 
 *Radice si chiamava Lowline fino alla 0.4: le sessioni delle DAW e i preset .lowline continuano ad aprirsi.*
 
